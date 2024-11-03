@@ -11,18 +11,20 @@
     <ul>
         {% for post in page_obj %}
             <li>
-                <h2>{{ post.title }} <h4> Дата публикации: {{ post.date_posted }}</h4></h2>
+                <h2>{{ post.title }}</h2>
+                <h4>Дата публикации: {{ post.date_posted }}</h4>
                 <p>{{ post.content }}</p>
             </li>
         {% endfor %}
     </ul>
 
     <div class="pagination">
-        <span>
-            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}:
-        </span>
-
-        <div>
+        <div class="pagination-info">
+            <span>
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+        </div>
+        <div class="pagination-controls">
             {% if page_obj.has_previous %}
                 <a href="?page=1">Первая</a>
                 <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
@@ -37,8 +39,8 @@
             {% endfor %}
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+                <a href="?page={{ page_obj.next_page_number }}"> Следующая </a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"> Последняя </a>
             {% endif %}
         </div>
     </div>
@@ -50,6 +52,8 @@
             <option value="20" {% if request.GET.page_size == '20' %}selected{% endif %}>20</option>
         </select>
     </form>
-    <a href="/platform/"><button>На главную страницу</button></a>
+    <a href="/platform/">
+        <button>На главную страницу</button>
+    </a>
 </body>
 </html>
